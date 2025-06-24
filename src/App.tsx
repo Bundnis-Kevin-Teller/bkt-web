@@ -43,20 +43,32 @@ function App() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormStatus('submitting');
+  e.preventDefault();
+  setFormStatus('submitting');
 
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+  try {
+    const response = await fetch('https://bkt-info.org/api/senddiscord.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: new URLSearchParams(formData).toString()
+    });
+
+    if (response.ok) {
       setFormStatus('success');
       setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus('idle'), 3000);
-    } catch (error) {
-      setFormStatus('error');
-      setTimeout(() => setFormStatus('idle'), 3000);
+    } else {
+      throw new Error('Fehler beim Senden');
     }
-  };
 
+    setTimeout(() => setFormStatus('idle'), 3000);
+  } catch (err) {
+    console.error('Fehler:', err);
+    setFormStatus('error');
+    setTimeout(() => setFormStatus('idle'), 3000);
+  }
+};
   
 
 
@@ -573,7 +585,8 @@ function App() {
                     "Transparente Entscheidungsprozesse",
                     "Aktive Einbindung aller Mitglieder",
                     "Spaß und Ernst in perfekter Balance",
-                    "Innovative Lösungsansätze für alte Probleme"
+                    "Innovative Lösungsansätze für alte Probleme",
+                    "GHGegen den G-Punkt",
                   ].map((point, index) => (
                     <li key={index} className="flex items-center gap-3 text-lg group">
                       <Star className="text-red-600 dark:text-red-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" size={24} />
@@ -688,12 +701,12 @@ function App() {
                 </a>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Direktlink: <a 
-                    href="https://dcserver.link/bkt"
+                    href="https://dcs.lol/bkt"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-red-600 dark:hover:text-red-400 transition-colors duration-300"
                   >
-                    dcserver.link/bkt
+                    dcs.lol/bkt
                   </a>
                 </p>
               </div>
