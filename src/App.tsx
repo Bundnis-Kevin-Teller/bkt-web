@@ -47,7 +47,7 @@ function App() {
   setFormStatus('submitting');
 
   try {
-    const response = await fetch('/api/senddiscord.php', {
+    const response = await fetch('https://bkt-info.org/api/senddiscord.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -55,20 +55,17 @@ function App() {
       body: new URLSearchParams(formData)
     });
 
-    if (response.ok) {
-      const text = await response.text();
-      if (text.includes('Success')) {
-        setFormStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setFormStatus('idle'), 3000);
-      } else {
-        throw new Error('Webhook-Antwort war kein "Success"');
-      }
+    const text = await response.text();
+
+    if (response.ok && text.includes('Success')) {
+      setFormStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setFormStatus('idle'), 3000);
     } else {
-      throw new Error(`HTTP Fehler: ${response.status}`);
+      throw new Error(`Fehler: ${text}`);
     }
-  } catch (error) {
-    console.error('Fehler beim Formularversand:', error);
+  } catch (err) {
+    console.error('Fehler beim Formularversand:', err);
     setFormStatus('error');
     setTimeout(() => setFormStatus('idle'), 3000);
   }
