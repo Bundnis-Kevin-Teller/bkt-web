@@ -50,19 +50,18 @@ function App() {
     const response = await fetch('https://bkt-info.org/api/senddiscord.php', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: new URLSearchParams(formData)
+      body: new URLSearchParams(formData),
     });
 
     const text = await response.text();
-
-    if (response.ok && text.includes('Success')) {
+    if (response.ok && text.includes("Success")) {
       setFormStatus('success');
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setFormStatus('idle'), 3000);
     } else {
-      throw new Error(`Fehler: ${text}`);
+      throw new Error(text);
     }
   } catch (err) {
     console.error('Fehler beim Formularversand:', err);
