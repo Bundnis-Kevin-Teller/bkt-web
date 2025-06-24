@@ -286,15 +286,43 @@ function App() {
             </div>
             <div className="team-card">
               <img 
-                src="https://bkt-info.org/media.png" 
-                alt="SoulR4gELxGen" 
+                src="https://bkt-info.org/adam.png" 
+                alt="Adam" 
                 className="team-image"
               />
               <div className="team-content">
-                <h3 className="text-2xl font-bold mb-2">SoulR4gELxGen</h3>
+                <h3 className="text-2xl font-bold mb-2">Adam</h3>
+                <p className="text-red-600 dark:text-red-400 font-semibold mb-4">Developement</p>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Kreativer Kopf und Entwickler. Bringt frischen Input in unsere Projekte.
+                </p>
+              </div>
+            </div>
+             <div className="team-card">
+              <img 
+                src="https://bkt-info.org/jerry.png" 
+                alt="Jerry" 
+                className="team-image"
+              />
+              <div className="team-content">
+                <h3 className="text-2xl font-bold mb-2">Jerry</h3>
+                <p className="text-red-600 dark:text-red-400 font-semibold mb-4">Media / Eventleitung</p>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Unser kreativer Kopf für Medien und Events. Sorgt für unvergessliche Erlebnisse!
+                </p>
+              </div>
+            </div>
+            <div className="team-card">
+              <img 
+                src="https://bkt-info.org/sambo.png" 
+                alt="Sambo" 
+                className="team-image"
+              />
+              <div className="team-content">
+                <h3 className="text-2xl font-bold mb-2">Sambo</h3>
                 <p className="text-red-600 dark:text-red-400 font-semibold mb-4">Media</p>
                 <p className="text-gray-700 dark:text-gray-300">
-                  Kreativkopf und Mediengenie. Bringt unsere Message visuell auf den Punkt.
+                  Unser kreativer Kopf für Medien. Sorgt für unvergessliche Erlebnisse!
                 </p>
               </div>
             </div>
