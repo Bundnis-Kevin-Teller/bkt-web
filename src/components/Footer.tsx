@@ -4,10 +4,13 @@ import { Heart, Mail, Phone, Globe, ShieldCheck } from "lucide-react";
 export default function Footer() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showImpressum, setShowImpressum] = useState(false);
+  const [showManagement, setShowManagement] = useState(false);
+  
 
   const closePopup = () => {
     setShowPrivacy(false);
     setShowImpressum(false);
+    setShowManagement(false);
   };
 
   return (
@@ -24,6 +27,7 @@ export default function Footer() {
             <div className="flex gap-4 mt-3 justify-center md:justify-start text-sm">
               <button onClick={() => setShowPrivacy(true)} className="hover:underline hover:text-red-500 transition-all">Datenschutz</button>
               <button onClick={() => setShowImpressum(true)} className="hover:underline hover:text-red-500 transition-all">Impressum</button>
+              <button onClick={() => setShowManagement(true)} className="hover:underline hover:text-red-500 transition-all">Management</button>
             </div>
           </div>
 
@@ -33,7 +37,7 @@ export default function Footer() {
         </div>
       </footer>
 
-      {(showPrivacy || showImpressum) && (
+      {(showPrivacy || showImpressum || showManagement) && (
         <div
           className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center px-4"
           onClick={closePopup}
@@ -76,23 +80,53 @@ export default function Footer() {
         Falls wir jemals anfangen sollten, Daten zu erheben (unlikely), informieren wir dich rechtzeitig – per Brieftaube oder Meme.
       </p>
       <p className="text-xs text-gray-500 dark:text-gray-400">
-        Letztes Update: 01.01.2025 – Datenschutzstatus: chillig.
+        Letztes Update: 25.06.2025 – Datenschutzstatus: chillig.
       </p>
     </div>
   </>
 )}
+
+ {/* Management Content */}
+{showManagement && (
+  <>
+    <h2 className="text-3xl font-bold mb-4 flex items-center gap-2">
+      <ShieldCheck className="text-red-500" size={24} />
+      BKT - Management
+    </h2>
+    <div className="space-y-2 text-sm leading-relaxed">
+      <p>
+        Zuständig für das gesamte Management, Anfragenbearbeitung, E-Mail-Kommunikation und Kontaktformulare:
+      </p>
+
+      <ul className="list-none pl-0 space-y-1">
+        <li><strong>Name:</strong> Nael-Emin Ben Oun</li>
+        <li><strong>Telefon:</strong> <a href="tel:+4915566595553" className="underline">+49 15566595553</a></li>
+        <li><strong>Persönliche Mail:</strong> <a href="mailto:benounnaelemin@gmail.com" className="underline">benounnaelemin@gmail.com</a></li>
+        <li><strong>Offizielle Management-Mail:</strong> <a href="mailto:management@bkt-info.org" className="underline">management@bkt-info.org</a></li>
+        <li><strong>Kontaktformular-Empfänger:</strong> <a href="mailto:kontakt@bkt-info.org" className="underline">kontakt@bkt-info.org</a></li>
+      </ul>
+
+      <p className="text-xs text-gray-500 dark:text-gray-400">
+        Zuständigkeit bestätigt: Stand 25.06.2025
+      </p>
+    </div>
+  </>
+)}
+
+
 
             {/* Impressum Content */}
             {showImpressum && (
               <>
                 <h2 className="text-3xl font-bold mb-4">Impressum</h2>
                 <div className="space-y-3 text-sm leading-relaxed">
-                  <p><strong>Verantwortlich nach § 5 TMG:</strong><br />EministarVR (kein echter Name, aber echter Einsatz)</p>
+                  <p><strong>Verantwortlich nach § 5 TMG:</strong><br />Nael-Emin Ben Oun</p>
                   <p className="flex items-center gap-2"><Mail size={16} /> <a href="mailto:kontakt@bkt-info.org" className="hover:underline">kontakt@bkt-info.org</a></p>
+                  <p className="flex items-center gap-2"><Mail size={16} /> <a href="mailto:management@bkt-info.org" className="hover:underline">management@bkt-info.org</a></p>
                   <p className="flex items-center gap-2"><Phone size={16} /> +49 155 6659 5553</p>
                   <p className="flex items-center gap-2"><Globe size={16} /> <a href="https://www.bkt-info.org" target="_blank" rel="noopener noreferrer" className="hover:underline">www.bkt-info.org</a></p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    Diese Website dient der Satire. Es besteht keinerlei Anspruch auf politische Korrektheit oder Ernsthaftigkeit.
+                    Diese Website dient der Satire. Es besteht keinerlei Anspruch auf politische Korrektheit oder Ernsthaftigkeit. Das BKT ist eine Community.
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     Open Source & proudly built by der Community. Code ansehen auf:{" "}

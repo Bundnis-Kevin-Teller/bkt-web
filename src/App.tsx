@@ -47,29 +47,54 @@ function App() {
   setFormStatus('submitting');
 
   try {
-    const response = await fetch('https://bkt-info.org/api/senddiscord.php', {
+    const webhookUrl = 'https://discord.com/api/webhooks/1358207303651819571/uQofI4bHSTRsWb9zghrCAGqp4J0Yvje-D_BTsyBPE1DDFfEMqUjcoUj1zcQ9AZcxBD7d';
+
+    const payload = {
+      embeds: [
+        {
+          title: '📨 Neue Kontaktanfrage',
+          color: 0xB91C1C, // rot
+          fields: [
+            {
+              name: '👤 Name',
+              value: formData.name || 'Nicht angegeben',
+              inline: false
+            },
+            {
+              name: '📧 E-Mail',
+              value: formData.email || 'Nicht angegeben',
+              inline: false
+            },
+            {
+              name: '💬 Nachricht',
+              value: formData.message || 'Keine Nachricht',
+              inline: false
+            }
+          ],
+          footer: {
+            text: 'BKT Kontaktformular',
+            icon_url: 'https://bkt-info.org/bkt.png'
+          },
+          timestamp: new Date().toISOString()
+        }
+      ]
+    };
+
+    await fetch(webhookUrl, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams(formData),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
     });
 
-    const text = await response.text();
-    if (response.ok && text.includes("Success")) {
-      setFormStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus('idle'), 3000);
-    } else {
-      throw new Error(text);
-    }
-  } catch (err) {
-    console.error('Fehler beim Formularversand:', err);
+    setFormStatus('success');
+    setFormData({ name: '', email: '', message: '' });
+    setTimeout(() => setFormStatus('idle'), 3000);
+  } catch (error) {
+    console.error('Fehler beim Senden an Discord:', error);
     setFormStatus('error');
     setTimeout(() => setFormStatus('idle'), 3000);
   }
 };
-
 
   return (
     <div className="min-h-screen">
@@ -187,12 +212,12 @@ function App() {
               Jetzt Mitglied werden
             </a>
             <a 
-              href="https://dcserver.link/bkt"
+              href="https://dcs.lol/bkt"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-300"
             >
-              oder direkt zum Discord (dcserver.link/bkt)
+              oder direkt zum Discord (dcs.lol/bkt)
             </a>
           </div>
           <div className="mt-12">
@@ -228,7 +253,7 @@ function App() {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="achievement-card">
-              <div className="text-4xl font-bold text-red-600 dark:text-red-400">70+</div>
+              <div className="text-4xl font-bold text-red-600 dark:text-red-400">200+</div>
               <p>Discord Mitglieder</p>
             </div>
             <div className="achievement-card">
@@ -370,67 +395,78 @@ function App() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="content-section">
-          <h2 className="section-title flex items-center gap-3">
-            <Quote className="text-red-600 dark:text-red-400" /> Was unsere Wähler sagen
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="testimonial-card">
-              <img 
-                src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" 
-                alt="Kevin M." 
-                className="testimonial-image"
-              />
-              <div className="testimonial-content">
-                <h3 className="font-semibold text-xl mb-2">Kevin M.</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  "Endlich eine Partei, die Politik nicht so ernst nimmt! Die Memes sind top und die Community ist mega!"
-                </p>
-                <div className="flex items-center gap-1 mt-2">
-                  {[1,2,3,4,5].map((star) => (
-                    <Star key={star} size={16} className="text-yellow-500 fill-current" />
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="testimonial-card">
-              <img 
-                src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg" 
-                alt="Lisa T." 
-                className="testimonial-image"
-              />
-              <div className="testimonial-content">
-                <h3 className="font-semibold text-xl mb-2">Lisa T.</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  "Die Events sind immer super organisiert und man lernt so viele coole Leute kennen. BKT für den Win!"
-                </p>
-                <div className="flex items-center gap-1 mt-2">
-                  {[1,2,3,4,5].map((star) => (
-                    <Star key={star} size={16} className="text-yellow-500 fill-current" />
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="testimonial-card">
-              <img 
-                src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg" 
-                alt="Max P." 
-                className="testimonial-image"
-              />
-              <div className="testimonial-content">
-                <h3 className="font-semibold text-xl mb-2">Max P.</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  "Beste Community ever! Hier wird Politik endlich mal verständlich und unterhaltsam erklärt."
-                </p>
-                <div className="flex items-center gap-1 mt-2">
-                  {[1,2,3,4,5].map((star) => (
-                    <Star key={star} size={16} className="text-yellow-500 fill-current" />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+<section className="content-section">
+  <h2 className="section-title flex items-center gap-3">
+    <Quote className="text-red-600 dark:text-red-400" /> Was unsere Wähler sagen
+  </h2>
+
+  <div className="grid md:grid-cols-3 gap-8">
+    {/* Testimonial 1 */}
+    <div className="testimonial-card">
+      <img 
+        src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" 
+        alt="Kevin M." 
+        className="testimonial-image"
+      />
+      <div className="testimonial-content">
+        <h3 className="font-semibold text-xl mb-2">Kevin M.</h3>
+        <p className="text-gray-700 dark:text-gray-300">
+          "Endlich eine Partei, die Politik nicht so ernst nimmt! Die Memes sind top und die Community ist mega!"
+        </p>
+        <div className="flex items-center gap-1 mt-2">
+          {[1,2,3,4,5].map((star) => (
+            <Star key={star} size={16} className="text-yellow-500 fill-current" />
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* Testimonial 2 */}
+    <div className="testimonial-card">
+      <img 
+        src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg" 
+        alt="Lisa T." 
+        className="testimonial-image"
+      />
+      <div className="testimonial-content">
+        <h3 className="font-semibold text-xl mb-2">Lisa T.</h3>
+        <p className="text-gray-700 dark:text-gray-300">
+          "Die Events sind immer super organisiert und man lernt so viele coole Leute kennen. BKT für den Win!"
+        </p>
+        <div className="flex items-center gap-1 mt-2">
+          {[1,2,3,4,5].map((star) => (
+            <Star key={star} size={16} className="text-yellow-500 fill-current" />
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* Testimonial 3 */}
+    <div className="testimonial-card">
+      <img 
+        src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg" 
+        alt="Max P." 
+        className="testimonial-image"
+      />
+      <div className="testimonial-content">
+        <h3 className="font-semibold text-xl mb-2">Max P.</h3>
+        <p className="text-gray-700 dark:text-gray-300">
+          "Beste Community ever! Hier wird Politik endlich mal verständlich und unterhaltsam erklärt."
+        </p>
+        <div className="flex items-center gap-1 mt-2">
+          {[1,2,3,4,5].map((star) => (
+            <Star key={star} size={16} className="text-yellow-500 fill-current" />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Disclaimer Hinweis */}
+  <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-6 text-center">
+    Hinweis: Diese Testimonials sind fiktiv. Die abgebildeten Personen existieren nicht – und haben das auch nie gesagt.
+  </p>
+</section>
 
         {/* Upcoming Events Section */}
         <section className="content-section">
@@ -441,7 +477,7 @@ function App() {
             <div className="event-card">
               <div className="event-date">
                 <span className="text-2xl font-bold">15</span>
-                <span>März</span>
+                <span>Juli</span>
               </div>
               <div className="event-details">
                 <h3 className="text-xl font-semibold">Meme Contest</h3>
@@ -451,7 +487,7 @@ function App() {
             <div className="event-card">
               <div className="event-date">
                 <span className="text-2xl font-bold">22</span>
-                <span>März</span>
+                <span>Juli</span>
               </div>
               <div className="event-details">
                 <h3 className="text-xl font-semibold">Community Meeting</h3>
@@ -461,7 +497,7 @@ function App() {
             <div className="event-card">
               <div className="event-date">
                 <span className="text-2xl font-bold">01</span>
-                <span>April</span>
+                <span>August</span>
               </div>
               <div className="event-details">
                 <h3 className="text-xl font-semibold">BKT Convention</h3>
@@ -470,6 +506,7 @@ function App() {
             </div>
           </div>
         </section>
+        
 
         {/* Join the Movement Section */}
         <section className="content-section bg-gradient-to-r from-red-500 to-red-600 dark:from-red-600 dark:to-red-700 text-white">
@@ -491,12 +528,12 @@ function App() {
                 Discord beitreten
               </a>
               <a 
-                href="https://dcserver.link/bkt"
+                href="https://dcs.lol/bkt"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/80 hover:text-white transition-colors duration-300"
               >
-                oder direkt: dcserver.link/bkt
+                oder direkt: dcs.lol/bkt
               </a>
             </div>
           </div>
@@ -525,12 +562,24 @@ function App() {
               </div>
             </div>
             <div className="md:w-1/3">
-              <img 
-                src="https://bkt-info.org/kevin.png" 
-                alt="Team Spirit" 
-                className="rounded-xl glass-panel p-2 w-full h-auto transition-transform duration-300 hover:scale-105"
-              />
-            </div>
+  <img 
+    src="https://bkt-info.org/kevin.png" 
+    alt="Team Spirit" 
+    className="rounded-xl glass-panel p-2 w-full h-auto transition-transform duration-300 hover:scale-105"
+  />
+  <p className="mt-2 text-[0.75rem] italic text-gray-500 dark:text-gray-400 text-center">
+    Bildquelle:{" "}
+    <a 
+      href="https://www.redbull.com/de-de/athlete/kevin-teller" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="underline hover:text-red-500 transition"
+    >
+      redbull.com/kevin-teller
+    </a>
+  </p>
+</div>
+
           </div>
         </section>
 
