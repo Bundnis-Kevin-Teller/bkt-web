@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PartyPopper, Users, Brain, FileText, MessageCircle, ArrowDown, Disc as Discord, Menu, X, Heart, Sun, Moon, Monitor, Download, Mail, Star, Trophy, Laugh, Quote, ThumbsUp, Target, Sparkles, Rocket, Coffee, Users2, Coins, Gift, Award, Crown } from 'lucide-react';
+import { PartyPopper, Users, Brain, FileText, MessageCircle, ArrowDown, Disc as Discord, Menu, X, Sun, Moon, Monitor, Download, Mail, Star, Trophy, Laugh, Quote, Target, Sparkles, Rocket, Coffee, Users2, Coins, Gift, Award, Crown } from 'lucide-react';
 import Footer from './components/Footer';
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -106,6 +106,7 @@ function App() {
               src="https://bkt-info.org/bkt.png" 
               alt="BKT Logo" 
               className="h-12 w-12 object-contain transition-transform duration-300 hover:scale-105"
+              aria-hidden="true"
             />
             <h1 className="text-2xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">BKT</h1>
           </div>
@@ -117,6 +118,7 @@ function App() {
                 onClick={() => toggleTheme('light')}
                 className={`theme-button ${theme === 'light' ? 'active' : ''}`}
                 title="Light Mode"
+                aria-label="Hellen Modus aktivieren"
               >
                 <Sun size={20} />
               </button>
@@ -124,6 +126,7 @@ function App() {
                 onClick={() => toggleTheme('dark')}
                 className={`theme-button ${theme === 'dark' ? 'active' : ''}`}
                 title="Dark Mode"
+                aria-label="Dunklen Modus aktivieren"
               >
                 <Moon size={20} />
               </button>
@@ -131,6 +134,7 @@ function App() {
                 onClick={() => toggleTheme('system')}
                 className={`theme-button ${theme === 'system' ? 'active' : ''}`}
                 title="System Theme"
+                aria-label="Automatische Theme-Umschaltung aktivieren"
               >
                 <Monitor size={20} />
               </button>
@@ -147,10 +151,10 @@ function App() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex gap-8">
-              <button onClick={() => scrollToSection('about')} className="nav-link">Über uns</button>
-              <button onClick={() => scrollToSection('why')} className="nav-link">Warum?</button>
-              <button onClick={() => scrollToSection('program')} className="nav-link">Wahlprogramm</button>
-              <button onClick={() => scrollToSection('contact')} className="nav-link">Kontakt</button>
+              <button onClick={() => scrollToSection('about')} className="nav-link" aria-label="Zur Über-uns Sektion scrollen">Über uns</button>
+              <button onClick={() => scrollToSection('why')} className="nav-link" aria-label="Zur Warum Sektion scrollen">Warum?</button>
+              <button onClick={() => scrollToSection('program')} className="nav-link" aria-label="Zum Wahlprogramm scrollen">Wahlprogramm</button>
+              <button onClick={() => scrollToSection('contact')} className="nav-link" aria-label="Zur Kontaktsektion scrollen">Kontakt</button>
             </div>
           </div>
         </div>
@@ -160,6 +164,7 @@ function App() {
       <div 
         className={`mobile-nav-overlay ${isMenuOpen ? 'visible' : ''}`}
         onClick={() => setIsMenuOpen(false)}
+        aria-label="Navigation anzeigen"
       />
       <div className={`mobile-nav-content ${isMenuOpen ? 'visible' : ''}`}>
         {/* Mobile Theme Toggle */}
@@ -168,6 +173,7 @@ function App() {
             onClick={() => toggleTheme('light')}
             className={`theme-button ${theme === 'light' ? 'active' : ''}`}
             title="Light Mode"
+            aria-label="Hellen Modus aktivieren"
           >
             <Sun size={20} />
           </button>
@@ -175,6 +181,7 @@ function App() {
             onClick={() => toggleTheme('dark')}
             className={`theme-button ${theme === 'dark' ? 'active' : ''}`}
             title="Dark Mode"
+            aria-label="Dunklen Modus aktivieren"
           >
             <Moon size={20} />
           </button>
@@ -182,20 +189,21 @@ function App() {
             onClick={() => toggleTheme('system')}
             className={`theme-button ${theme === 'system' ? 'active' : ''}`}
             title="System Theme"
+            aria-label="Automatische Theme-Umschaltung aktivieren"
           >
             <Monitor size={20} />
           </button>
         </div>
-        <button onClick={() => scrollToSection('about')} className="nav-link w-full text-center py-2">Über uns</button>
-        <button onClick={() => scrollToSection('why')} className="nav-link w-full text-center py-2">Warum?</button>
-        <button onClick={() => scrollToSection('program')} className="nav-link w-full text-center py-2">Wahlprogramm</button>
-        <button onClick={() => scrollToSection('contact')} className="nav-link w-full text-center py-2">Kontakt</button>
+        <button onClick={() => scrollToSection('about')} className="nav-link w-full text-center py-2" aria-label="Zur Über-uns Sektion scrollen">Über uns</button>
+        <button onClick={() => scrollToSection('why')} className="nav-link w-full text-center py-2" aria-label="Zur Warum Sektion scrollen">Warum?</button>
+        <button onClick={() => scrollToSection('program')} className="nav-link w-full text-center py-2" aria-label="Zur Wahlprogramm Sektion scrollen">Wahlprogramm</button>
+        <button onClick={() => scrollToSection('contact')} className="nav-link w-full text-center py-2" aria-label="Zur Kontaktsektion scrollen">Kontakt</button>
       </div>
 
       <div className="min-h-screen px-4 py-24 md:px-8">
         {/* Hero Section */}
         <section className="content-section text-center">
-          <h1 className="hero-title">
+          <h1 className="hero-title" aria-label="">
             Willkommen beim Bündnis Kevin Teller!
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-700 dark:text-gray-300">
@@ -207,6 +215,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               className="neon-button inline-flex items-center gap-2"
+              aria-label="Discord Mitglied werden"
             >
               <Discord size={20} />
               Jetzt Mitglied werden
@@ -221,7 +230,7 @@ function App() {
             </a>
           </div>
           <div className="mt-12">
-            <ArrowDown className="mx-auto text-red-500 animate-bounce dark:text-red-400" size={32} />
+            <ArrowDown className="mx-auto text-red-500 animate-bounce dark:text-red-400" size={32} aria-label="Zum Content" />
           </div>
         </section>
 
@@ -229,17 +238,17 @@ function App() {
         <section className="content-section">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="feature-card">
-              <Star className="feature-icon" size={32} />
+              <Star className="feature-icon" size={32} aria-hidden={true} />
               <h3 className="text-xl font-semibold mb-2">Community First</h3>
               <p>Eine Partei von der Community, für die Community. Jede Stimme zählt bei uns!</p>
             </div>
             <div className="feature-card">
-              <Trophy className="feature-icon" size={32} />
+              <Trophy className="feature-icon" size={32} aria-hidden={true}/>
               <h3 className="text-xl font-semibold mb-2">Echte Ziele</h3>
               <p>Wir setzen uns für mehr Spaß und weniger Stress in der Politik ein.</p>
             </div>
             <div className="feature-card">
-              <Laugh className="feature-icon" size={32} />
+              <Laugh className="feature-icon" size={32} aria-hidden={true} />
               <h3 className="text-xl font-semibold mb-2">Humor & Politik</h3>
               <p>Politik muss nicht langweilig sein. Wir bringen frischen Wind in verstaubte Debatten!</p>
             </div>
@@ -249,7 +258,7 @@ function App() {
         {/* Achievements Section */}
         <section className="content-section">
           <h2 className="section-title flex items-center gap-3">
-            <Target className="text-red-600 dark:text-red-400" /> Unsere Erfolge
+            <Target className="text-red-600 dark:text-red-400" aria-hidden={true} /> Unsere Erfolge
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="achievement-card">
@@ -279,7 +288,7 @@ function App() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="team-card">
               <div className="relative">
-                <Crown className="absolute -top-4 left-1/2 -translate-x-1/2 text-yellow-500" size={32} />
+                <Crown className="absolute -top-4 left-1/2 -translate-x-1/2 text-yellow-500" size={32} aria-hidden={true} />
                 <img 
                   src="https://bkt-info.org/jt.png" 
                   alt="JT_lol" 
@@ -356,7 +365,7 @@ function App() {
         {/* Support Us Section */}
         <section className="content-section bg-gradient-to-r from-amber-500 to-amber-600 dark:from-amber-600 dark:to-amber-700 text-white">
           <div className="text-center space-y-6">
-            <Coffee className="mx-auto" size={48} />
+            <Coffee className="mx-auto" size={48} aria-hidden={true} />
             <h2 className="text-4xl md:text-5xl font-bold">Unterstütze unsere Mission!</h2>
             <p className="text-xl md:text-2xl max-w-2xl mx-auto">
               Server und Bots kosten Geld - aber wir wollen weiterhin kostenlos für die Community da sein.
@@ -364,114 +373,113 @@ function App() {
             </p>
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-8">
               <div className="support-card">
-                <Coins className="mx-auto mb-4" size={32} />
+                <Coins className="mx-auto mb-4" size={32} aria-hidden={true} />
                 <h3 className="text-xl font-semibold mb-2">Server Kosten</h3>
                 <p>Hilf uns dabei, die Server-Infrastruktur zu finanzieren</p>
               </div>
               <div className="support-card">
-                <Gift className="mx-auto mb-4" size={32} />
+                <Gift className="mx-auto mb-4" size={32} aria-hidden={true} />
                 <h3 className="text-xl font-semibold mb-2">Discord Bot</h3>
                 <p>Unterstütze die Entwicklung unseres Community Bots</p>
               </div>
               <div className="support-card">
-                <Award className="mx-auto mb-4" size={32} />
+                <Award className="mx-auto mb-4" size={32} aria-hidden={true} />
                 <h3 className="text-xl font-semibold mb-2">Events</h3>
                 <p>Ermögliche uns noch mehr Community Events</p>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-  <a 
-    href="https://ko-fi.com/eministarvr"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="support-button"
-  >
-    <Coffee size={20} />
-    Unterstütze das BKT
-  </a>
-</div>
-
+              <a
+                href="https://ko-fi.com/eministarvr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="support-button"
+              >
+                <Coffee size={20} aria-hidden={true} />
+                Unterstütze das BKT
+              </a>
+            </div>
           </div>
         </section>
 
         {/* Testimonials Section */}
-<section className="content-section">
-  <h2 className="section-title flex items-center gap-3">
-    <Quote className="text-red-600 dark:text-red-400" /> Was unsere Wähler sagen
-  </h2>
+        <section className="content-section">
+          <h2 className="section-title flex items-center gap-3">
+            <Quote className="text-red-600 dark:text-red-400" aria-hidden={true} /> Was unsere Wähler sagen
+          </h2>
 
-  <div className="grid md:grid-cols-3 gap-8">
-    {/* Testimonial 1 */}
-    <div className="testimonial-card">
-      <img 
-        src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" 
-        alt="Kevin M." 
-        className="testimonial-image"
-      />
-      <div className="testimonial-content">
-        <h3 className="font-semibold text-xl mb-2">Kevin M.</h3>
-        <p className="text-gray-700 dark:text-gray-300">
-          "Endlich eine Partei, die Politik nicht so ernst nimmt! Die Memes sind top und die Community ist mega!"
-        </p>
-        <div className="flex items-center gap-1 mt-2">
-          {[1,2,3,4,5].map((star) => (
-            <Star key={star} size={16} className="text-yellow-500 fill-current" />
-          ))}
-        </div>
-      </div>
-    </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div className="testimonial-card">
+              <img
+                src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"
+                alt="Kevin M."
+                className="testimonial-image"
+              />
+              <div className="testimonial-content">
+                <h3 className="font-semibold text-xl mb-2">Kevin M.</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  "Endlich eine Partei, die Politik nicht so ernst nimmt! Die Memes sind top und die Community ist mega!"
+                </p>
+                <div className="flex items-center gap-1 mt-2">
+                  {[1,2,3,4,5].map((star) => (
+                    <Star key={star} size={16} className="text-yellow-500 fill-current" aria-hidden={true} />
+                  ))}
+                </div>
+              </div>
+            </div>
 
-    {/* Testimonial 2 */}
-    <div className="testimonial-card">
-      <img 
-        src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg" 
-        alt="Lisa T." 
-        className="testimonial-image"
-      />
-      <div className="testimonial-content">
-        <h3 className="font-semibold text-xl mb-2">Lisa T.</h3>
-        <p className="text-gray-700 dark:text-gray-300">
-          "Die Events sind immer super organisiert und man lernt so viele coole Leute kennen. BKT für den Win!"
-        </p>
-        <div className="flex items-center gap-1 mt-2">
-          {[1,2,3,4,5].map((star) => (
-            <Star key={star} size={16} className="text-yellow-500 fill-current" />
-          ))}
-        </div>
-      </div>
-    </div>
+            {/* Testimonial 2 */}
+            <div className="testimonial-card">
+              <img
+                src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
+                alt="Lisa T."
+                className="testimonial-image"
+              />
+              <div className="testimonial-content">
+                <h3 className="font-semibold text-xl mb-2">Lisa T.</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  "Die Events sind immer super organisiert und man lernt so viele coole Leute kennen. BKT für den Win!"
+                </p>
+                <div className="flex items-center gap-1 mt-2">
+                  {[1,2,3,4,5].map((star) => (
+                    <Star key={star} size={16} className="text-yellow-500 fill-current" aria-hidden={true}/>
+                  ))}
+                </div>
+              </div>
+            </div>
 
-    {/* Testimonial 3 */}
-    <div className="testimonial-card">
-      <img 
-        src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg" 
-        alt="Max P." 
-        className="testimonial-image"
-      />
-      <div className="testimonial-content">
-        <h3 className="font-semibold text-xl mb-2">Max P.</h3>
-        <p className="text-gray-700 dark:text-gray-300">
-          "Beste Community ever! Hier wird Politik endlich mal verständlich und unterhaltsam erklärt."
-        </p>
-        <div className="flex items-center gap-1 mt-2">
-          {[1,2,3,4,5].map((star) => (
-            <Star key={star} size={16} className="text-yellow-500 fill-current" />
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
+            {/* Testimonial 3 */}
+            <div className="testimonial-card">
+              <img
+                src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg"
+                alt="Max P."
+                className="testimonial-image"
+              />
+              <div className="testimonial-content">
+                <h3 className="font-semibold text-xl mb-2">Max P.</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  "Beste Community ever! Hier wird Politik endlich mal verständlich und unterhaltsam erklärt."
+                </p>
+                <div className="flex items-center gap-1 mt-2">
+                  {[1,2,3,4,5].map((star) => (
+                    <Star key={star} size={16} className="text-yellow-500 fill-current" aria-hidden={true}/>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
 
-  {/* Disclaimer Hinweis */}
-  <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-6 text-center">
-    Hinweis: Diese Testimonials sind fiktiv. Die abgebildeten Personen existieren nicht – und haben das auch nie gesagt.
-  </p>
-</section>
+          {/* Disclaimer Hinweis */}
+          <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-6 text-center">
+            Hinweis: Diese Testimonials sind fiktiv. Die abgebildeten Personen existieren nicht – und haben das auch nie gesagt.
+          </p>
+        </section>
 
         {/* Upcoming Events Section */}
         <section className="content-section">
           <h2 className="section-title flex items-center gap-3">
-            <Sparkles className="text-red-600 dark:text-red-400" /> Kommende Events
+            <Sparkles className="text-red-600 dark:text-red-400" aria-hidden={true}/> Kommende Events
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="event-card">
@@ -524,7 +532,7 @@ function App() {
                 rel="noopener noreferrer"
                 className="movement-button"
               >
-                <Discord size={20} />
+                <Discord size={20} aria-hidden={true} />
                 Discord beitreten
               </a>
               <a 
@@ -544,7 +552,7 @@ function App() {
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="md:w-2/3">
               <h2 className="section-title flex items-center gap-3">
-                <Users className="text-red-600 dark:text-red-400" /> Wer sind wir?
+                <Users className="text-red-600 dark:text-red-400" aria-hidden={true}/> Wer sind wir?
               </h2>
               <div className="space-y-4">
                 <p className="text-lg text-gray-700 dark:text-gray-300">
@@ -562,31 +570,30 @@ function App() {
               </div>
             </div>
             <div className="md:w-1/3">
-  <img 
-    src="https://bkt-info.org/kevin.png" 
-    alt="Team Spirit" 
-    className="rounded-xl glass-panel p-2 w-full h-auto transition-transform duration-300 hover:scale-105"
-  />
-  <p className="mt-2 text-[0.75rem] italic text-gray-500 dark:text-gray-400 text-center">
-    Bildquelle:{" "}
-    <a 
-      href="https://www.redbull.com/de-de/athlete/kevin-teller" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      className="underline hover:text-red-500 transition"
-    >
-      redbull.com/kevin-teller
-    </a>
-  </p>
-</div>
-
+              <img
+                src="https://bkt-info.org/kevin.png"
+                alt="Team Spirit"
+                className="rounded-xl glass-panel p-2 w-full h-auto transition-transform duration-300 hover:scale-105"
+              />
+              <p className="mt-2 text-[0.75rem] italic text-gray-500 dark:text-gray-400 text-center">
+                Bildquelle:{" "}
+                <a
+                  href="https://www.redbull.com/de-de/athlete/kevin-teller"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-red-500 transition"
+                >
+                  redbull.com/kevin-teller
+                </a>
+              </p>
+            </div>
           </div>
         </section>
 
         {/* Warum? Section */}
         <section id="why" className="content-section">
           <h2 className="section-title flex items-center gap-3">
-            <Brain className="text-red-600 dark:text-red-400" /> Warum BKT?
+            <Brain className="text-red-600 dark:text-red-400" aria-hidden={true}/> Warum BKT?
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
@@ -603,19 +610,19 @@ function App() {
               <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">Unsere Grundsätze:</h3>
               <ul className="space-y-3">
                 <li className="flex items-center gap-2">
-                  <PartyPopper className="text-red-500 dark:text-red-400" size={20} />
+                  <PartyPopper className="text-red-500 dark:text-red-400" size={20} aria-hidden={true} />
                   <span>Humor als Brücke zwischen Menschen</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <PartyPopper className="text-red-500 dark:text-red-400" size={20} />
+                  <PartyPopper className="text-red-500 dark:text-red-400" size={20} aria-hidden={true} />
                   <span>Community-getriebene Entscheidungen</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <PartyPopper className="text-red-500 dark:text-red-400" size={20} />
+                  <PartyPopper className="text-red-500 dark:text-red-400" size={20} aria-hidden={true}/>
                   <span>Transparenz und Offenheit</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <PartyPopper className="text-red-500 dark:text-red-400" size={20} />
+                  <PartyPopper className="text-red-500 dark:text-red-400" size={20} aria-hidden={true}/>
                   <span>Politik zum Anfassen und Mitmachen</span>
                 </li>
               </ul>
@@ -626,7 +633,7 @@ function App() {
         {/* Wahlprogramm Section */}
         <section id="program" className="content-section">
           <h2 className="section-title flex items-center gap-3">
-            <FileText className="text-red-600 dark:text-red-400" /> Wahlprogramm
+            <FileText className="text-red-600 dark:text-red-400" aria-hidden={true} /> Wahlprogramm
           </h2>
           <div className="space-y-8">
             <div className="text-center max-w-3xl mx-auto">
@@ -647,7 +654,7 @@ function App() {
                     "Politik zum Mitmachen und Mitgestalten"
                   ].map((point, index) => (
                     <li key={index} className="flex items-center gap-3 text-lg group">
-                      <PartyPopper className="text-red-600 dark:text-red-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" size={24} />
+                      <PartyPopper className="text-red-600 dark:text-red-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" size={24} aria-hidden={true} />
                       <span className="text-gray-700 dark:text-gray-300">{point}</span>
                     </li>
                   ))}
@@ -665,7 +672,7 @@ function App() {
                     "GHGegen den G-Punkt",
                   ].map((point, index) => (
                     <li key={index} className="flex items-center gap-3 text-lg group">
-                      <Star className="text-red-600 dark:text-red-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" size={24} />
+                      <Star className="text-red-600 dark:text-red-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" size={24} aria-hidden={true}/>
                       <span className="text-gray-700 dark:text-gray-300">{point}</span>
                     </li>
                   ))}
@@ -673,24 +680,23 @@ function App() {
               </div>
             </div>
             <div className="text-center">
-  <a 
-    href="https://bkt-info.org/wahlprogramm.pdf"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="neon-button inline-flex items-center gap-2"
-  >
-    <Download size={20} />
-    Wahlprogramm herunterladen
-  </a>
-</div>
-
+              <a
+                href="https://bkt-info.org/wahlprogramm.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="neon-button inline-flex items-center gap-2"
+              >
+                <Download size={20} aria-hidden={true}/>
+                Wahlprogramm herunterladen
+              </a>
+            </div>
           </div>
         </section>
 
         {/* Kontakt Section */}
         <section id="contact" className="content-section">
           <h2 className="section-title flex items-center gap-3">
-            <MessageCircle className="text-red-600 dark:text-red-400" /> Kontakt
+            <MessageCircle className="text-red-600 dark:text-red-400" aria-hidden={true}/> Kontakt
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-8">
@@ -754,7 +760,7 @@ function App() {
                   href="mailto:kontakt@bkt-info.org"
                   className="inline-flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-300"
                 >
-                  <Mail size={20} />
+                  <Mail size={20} aria-hidden={true}/>
                   kontakt@bkt-info.org
                 </a>
               </div>
@@ -762,7 +768,7 @@ function App() {
             
             <div className="glass-panel p-8 text-center">
               <h3 className="text-2xl mb-4 text-red-600 dark:text-red-400">Tritt unserem Discord bei!</h3>
-              <Discord className="mx-auto text-red-600 dark:text-red-400 mb-4 transition-transform duration-300 hover:scale-110" size={48} />
+              <Discord className="mx-auto text-red-600 dark:text-red-400 mb-4 transition-transform duration-300 hover:scale-110" size={48} aria-hidden={true}/>
               <p className="mb-6 text-gray-700 dark:text-gray-300">
                 Werde Teil unserer Community auf Discord! Hier findest du alle Neuigkeiten, kannst mit anderen Mitgliedern diskutieren und bist immer up to date.
               </p>
